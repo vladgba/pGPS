@@ -1,17 +1,42 @@
-.mcp.json
-.agentsroom/handoff-transcript-*.txt
-.agentsroom/handoff-summary-*.md
-.agentsroom/fork-context-*.txt
-.agentsroom/transfer-context-*.txt
-
-# Android / Gradle
+# Gradle & Build Output
 .gradle/
 build/
-local.properties
-*.iml
-.idea/
+app/build/
 .kotlin/
 captures/
 .externalNativeBuild/
 .cxx/
-.agents/mcp_config.json
+*.iml
+
+# Local & Machine-Specific Configuration
+local.properties
+keystore.properties
+
+# Android Studio & IDE
+.idea/
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+.DS_Store
+
+# Log Files
+*.log
+
+# Keystore & Secrets
+*.jks
+*.keystore
+google-services.json
+
+# Built Artifacts
+*.apk
+*.aab
+output.json
+app/release/*
+
+# Android Profiling
+*.hprof
+# Agent & AI tool configurations
+.mcp.json
+.agents/
+.agentsroom/
+.claude/
