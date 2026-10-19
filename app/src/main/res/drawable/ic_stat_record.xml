@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Monochrome status-bar icon: crosshair with a recording dot. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M6.5,12a5.5,5.5 0,1 0,11 0a5.5,5.5 0,1 0,-11 0"
+        android:strokeWidth="1.8"
+        android:strokeColor="#FFFFFFFF" />
+    <path
+        android:pathData="M12,2.5L12,5.5M12,18.5L12,21.5M2.5,12L5.5,12M18.5,12L21.5,12"
+        android:strokeWidth="1.8"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M9.5,12a2.5,2.5 0,1 0,5 0a2.5,2.5 0,1 0,-5 0z" />
+</vector>

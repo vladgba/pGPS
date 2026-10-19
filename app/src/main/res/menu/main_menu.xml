@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_copy" android:title="@string/menu_copy" />
+    <item android:id="@+id/action_open_map" android:title="@string/menu_open_map" />
+    <item android:id="@+id/action_share" android:title="@string/menu_share" />
+    <item
+        android:id="@+id/action_keep_screen_on"
+        android:checkable="true"
+        android:title="@string/menu_keep_screen_on" />
+    <item android:id="@+id/action_clear_aiding" android:title="@string/menu_clear_aiding" />
+</menu>

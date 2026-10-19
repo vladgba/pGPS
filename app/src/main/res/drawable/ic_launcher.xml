@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Legacy launcher icon for API 24-25 (adaptive version in drawable-v26). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="@color/icon_bg"
+        android:pathData="M6,54a48,48 0,1 0,96 0a48,48 0,1 0,-96 0z" />
+    <path
+        android:pathData="M34,54a20,20 0,1 0,40 0a20,20 0,1 0,-40 0"
+        android:strokeWidth="4"
+        android:strokeColor="#FFFFFFFF" />
+    <path
+        android:pathData="M54,26L54,38M54,70L54,82M26,54L38,54M70,54L82,54"
+        android:strokeWidth="4"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round" />
+    <path
+        android:fillColor="#FF4FC3F7"
+        android:pathData="M48,54a6,6 0,1 0,12 0a6,6 0,1 0,-12 0z" />
+</vector>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GPS Tools</string>
+
+    <!-- Tabs -->
+    <string name="tab_status">Status</string>
+    <string name="tab_satellites">Satellites</string>
+    <string name="tab_sky">Sky</string>
+
+    <!-- Overflow menu -->
+    <string name="menu_more">More options</string>
+    <string name="menu_copy">Copy coordinates</string>
+    <string name="menu_open_map">Open in map app</string>
+    <string name="menu_share">Share location</string>
+    <string name="menu_keep_screen_on">Keep screen on</string>
+    <string name="menu_clear_aiding">Clear assistance data…</string>
+
+    <!-- Fix chip in the top bar -->
+    <string name="chip_no_access">NO ACCESS</string>
+    <string name="chip_gps_off">GPS OFF</string>
+    <string name="chip_stopped">STOPPED</string>
+    <string name="chip_searching">SEARCHING</string>
+    <string name="chip_fix">FIX</string>
+    <string name="chip_fix_2d">2D FIX</string>
+    <string name="chip_fix_3d">3D FIX</string>
+
+    <!-- Banner -->
+    <string name="banner_permission">Precise location permission is needed to read GNSS data.</string>
+    <string name="banner_permission_denied">Location permission was denied. Allow precise location in app settings.</string>
+    <string name="banner_gps_off">Location is turned off on this device.</string>
+    <string name="banner_grant">Grant</string>
+    <string name="banner_open_settings">Settings</string>
+
+    <!-- Status page -->
+    <string name="section_position">Position</string>
+    <string name="section_accuracy">Accuracy &amp; motion</string>
+    <string name="section_quality">Fix quality</string>
+    <string name="section_satellites">Satellites</string>
+    <string name="section_constellations">Constellations (used / in view)</string>
+    <string name="section_time">Time</string>
+
+    <string name="label_state">State</string>
+    <string name="label_latitude">Latitude</string>
+    <string name="label_longitude">Longitude</string>
+    <string name="label_lat_dms">Latitude (DMS)</string>
+    <string name="label_lon_dms">Longitude (DMS)</string>
+    <string name="section_formats">Coordinate formats (tap to copy)</string>
+    <string name="section_altitude">Altitude</string>
+    <string name="label_ddm">Degrees, decimal minutes</string>
+    <string name="label_utm">UTM</string>
+    <string name="label_mgrs">MGRS</string>
+    <string name="label_bng">British National Grid</string>
+    <string name="label_plus_code">Plus Code</string>
+    <string name="label_voice_code">Voice code</string>
+    <string name="format_pair">%1$s  %2$s</string>
+    <string name="format_two_lines">%1$s
+%2$s</string>
+    <string name="format_polar">(polar area: UPS not supported)</string>
+    <string name="format_outside_gb">(outside Great Britain)</string>
+    <string name="toast_copied_value">Copied %1$s</string>
+    <string name="label_alt_ellipsoid">Altitude (WGS84 ellipsoid)</string>
+    <string name="label_alt_msl">Altitude (MSL)</string>
+    <string name="label_geoid">Geoid separation</string>
+    <string name="label_h_acc">Horizontal accuracy</string>
+    <string name="label_v_acc">Vertical accuracy</string>
+    <string name="label_speed">Speed</string>
+    <string name="label_speed_acc">Speed accuracy</string>
+    <string name="label_bearing">Bearing</string>
+    <string name="label_bearing_acc">Bearing accuracy</string>
+    <string name="label_pdop">PDOP</string>
+    <string name="label_hdop">HDOP</string>
+    <string name="label_vdop">VDOP</string>
+    <string name="label_nmea_quality">NMEA fix quality</string>
+    <string name="label_used">Used in fix</string>
+    <string name="label_in_view">In view</string>
+    <string name="label_signals">Signals tracked</string>
+    <string name="label_ttff">Time to first fix</string>
+    <string name="label_fix_time">Fix time (UTC)</string>
+    <string name="label_fix_age">Fix age</string>
+    <string name="label_session">Session running for</string>
+
+    <string name="state_stopped">Stopped</string>
+    <string name="state_gps_off">Location off</string>
+    <string name="state_searching">Searching…</string>
+    <string name="state_fix">Fix</string>
+    <string name="state_fix_2d">2D fix</string>
+    <string name="state_fix_3d">3D fix</string>
+    <string name="none_in_view">No satellites in view yet</string>
+
+    <!-- Satellites page -->
+    <string name="sats_summary">In view: %1$d · Used: %2$d · Signals: %3$d</string>
+    <string name="sort_label">Sort</string>
+    <string name="sort_system">System</string>
+    <string name="sort_signal">Signal</string>
+    <string name="sort_elevation">Elevation</string>
+    <string name="waiting_satellites">Waiting for satellites…</string>
+    <string name="flag_used">used</string>
+    <string name="flag_ephemeris">eph</string>
+    <string name="flag_almanac">alm</string>
+
+    <!-- NMEA page -->
+    <string name="nmea_pause">Pause</string>
+    <string name="nmea_resume">Resume</string>
+    <string name="nmea_clear">Clear</string>
+    <string name="nmea_count">Received: %1$d · Shown: %2$d</string>
+    <string name="nmea_empty">No NMEA sentences yet.</string>
+
+    <!-- Sky page -->
+    <string name="sky_mode_plot">Plot</string>
+    <string name="sky_mode_3d">3D</string>
+    <string name="sky_compass">Compass</string>
+
+    <!-- Integrity page -->
+    <string name="tab_integrity">Integrity</string>
+    <string name="tab_integrity_alert">⚠ Integrity</string>
+    <string name="verdict_jamming">Jamming</string>
+    <string name="verdict_spoofing">Spoofing</string>
+    <string name="verdict_unknown">Not enough data</string>
+    <string name="verdict_ok">Not detected</string>
+    <string name="verdict_jamming_warn">Possible</string>
+    <string name="verdict_jamming_alert">Detected</string>
+    <string name="verdict_spoofing_warn">Suspicious</string>
+    <string name="verdict_spoofing_alert">Likely</string>
+    <string name="section_jamming_checks">Jamming checks</string>
+    <string name="section_spoofing_checks">Spoofing checks</string>
+    <string name="section_history">Last 3 minutes</string>
+    <string name="chart_legend">Top-4 C/N0 (dB-Hz)</string>
+    <string name="chart_legend_agc">AGC %1$s (dB)</string>
+    <string name="integrity_reset">Reset baselines</string>
+    <string name="integrity_reset_done">Baselines cleared, learning again</string>
+    <string name="integrity_disclaimer">These are heuristics, not proof. Moving indoors, under trees or into a vehicle also weakens signals; each check explains what it looks at. Reset the baselines after a big change of environment. AGC (the strongest jamming indicator) is only available on devices that report raw GNSS measurements.</string>
+    <string name="measurements_not_supported">This device does not provide raw GNSS measurements, so AGC is unavailable and jamming can only be flagged as possible.</string>
+
+    <string name="check_agc">AGC noise floor</string>
+    <string name="check_agc_desc">Receiver gain per band. A jammer adds in-band power, so the gain drops well below its baseline.</string>
+    <string name="check_cn0_drop">Signal strength drop</string>
+    <string name="check_cn0_drop_desc">Average of the 4 strongest signals against its baseline. All satellites fading together points to interference or an obstruction.</string>
+    <string name="check_signal_loss">Signals lost</string>
+    <string name="check_signal_loss_desc">Number of tracked signals against the usual count.</string>
+    <string name="check_mock">Mock location</string>
+    <string name="check_mock_desc">Android reports that the position comes from a mock provider (fake GPS app or developer option).</string>
+    <string name="check_network">GNSS vs network position</string>
+    <string name="check_network_desc">Distance between the GNSS fix and the Wi-Fi/cell position. A spoofed fix drifts away from where the networks place you.</string>
+    <string name="check_jump">Position jumps</string>
+    <string name="check_jump_desc">Fix moving faster than physically plausible (over 150 m/s and 300 m), typical when a spoofer takes over.</string>
+    <string name="check_clock">GNSS time</string>
+    <string name="check_clock_desc">GNSS time against the phone clock (set by the network), and sudden time jumps between fixes.</string>
+    <string name="check_uniform">Signal uniformity</string>
+    <string name="check_uniform_desc">Spread of C/N0 across satellites. Signals from one transmitter arrive with nearly identical strength; real ones vary.</string>
+    <string name="check_elevation">Strength vs elevation</string>
+    <string name="check_elevation_desc">Real satellites are usually stronger higher in the sky (positive correlation). A spoofer cannot reproduce that.</string>
+    <string name="check_strong">Unusually strong signals</string>
+    <string name="check_strong_desc">Phones rarely see several signals above 50 dB-Hz from space.</string>
+    <string name="check_constellations">Constellations</string>
+    <string name="check_constellations_desc">Simple spoofers only transmit GPS L1, so the other systems disappear.</string>
+
+    <!-- Tools tab -->
+    <string name="tab_tools">Tools</string>
+    <string name="tab_tools_recording">● Tools</string>
+    <string name="tools_back">‹ Tools</string>
+    <string name="tool_recorder">Session recorder</string>
+    <string name="tool_recorder_desc">NMEA, CSV, GPX, KML and RINEX logs, also with the screen off</string>
+    <string name="tool_averaging">Position averaging</string>
+    <string name="tool_averaging_desc">Survey a point: averaged position with CEP and 2DRMS</string>
+    <string name="tool_history">Quality history</string>
+    <string name="tool_history_desc">Accuracy, DOP, satellites and signal over the last 30 minutes</string>
+    <string name="tool_orbits">Orbits &amp; passes</string>
+    <string name="tool_orbits_desc">Predicted satellites, rise/set times and visibility forecast</string>
+    <string name="tool_waypoints">Waypoints</string>
+    <string name="tool_waypoints_desc">Save points and navigate to them</string>
+    <string name="tool_nmea">NMEA log</string>
+    <string name="tool_nmea_desc">Live raw sentences from the receiver</string>
+
+    <!-- Recorder -->
+    <string name="recorder_start">Start recording</string>
+    <string name="recorder_stop">Stop</string>
+    <string name="recorder_idle">Not recording</string>
+    <string name="recorder_status">Recording %1$s · fixes %2$d · epochs %3$d · NMEA %4$d</string>
+    <string name="recorder_rinex_status">RINEX epochs: %1$d</string>
+    <string name="recorder_rinex_unavailable">This device does not provide raw measurements: RINEX will stay empty.</string>
+    <string name="recorder_formats">Formats</string>
+    <string name="recorder_sessions">Sessions</string>
+    <string name="recorder_no_sessions">No recordings yet</string>
+    <string name="recorder_share">Share</string>
+    <string name="recorder_delete">Delete</string>
+    <string name="recorder_delete_title">Delete this session?</string>
+    <string name="recorder_location_hint">Files are in Android/data/%1$s/files/sessions (USB).</string>
+    <string name="recorder_error">Write error: %1$s</string>
+    <string name="recorder_channel">Recording</string>
+    <string name="recorder_notification_title">Recording GNSS session</string>
+    <string name="recorder_notification_text">%1$s · fixes: %2$d</string>
+    <string name="recorder_starting">Starting…</string>
+    <string name="format_nmea">NMEA sentences (.nmea)</string>
+    <string name="format_satellites">Satellites per epoch (.csv)</string>
+    <string name="format_fixes">Fixes (.csv)</string>
+    <string name="format_gpx">Track (.gpx)</string>
+    <string name="format_kml">Track (.kml)</string>
+    <string name="format_rinex">RINEX 3.04 observations (.rnx)</string>
+
+    <!-- Averaging -->
+    <string name="avg_start">Start</string>
+    <string name="avg_pause">Pause</string>
+    <string name="avg_reset">Reset</string>
+    <string name="avg_filter">Accept fixes</string>
+    <string name="avg_any">any</string>
+    <string name="avg_copy">Copy</string>
+    <string name="avg_save">Save as waypoint</string>
+    <string name="avg_hint">Keep the phone still, ideally under open sky. Press Start and wait several minutes: GNSS errors change slowly, so short averages are optimistic.</string>
+    <string name="avg_saved">Saved as waypoint</string>
+    <string name="avg_static_hold">⚠ The receiver is repeating the exact same position (static hold while not moving), so the spread is not meaningful. The mean is still usable.</string>
+
+    <!-- History -->
+    <string name="history_accuracy">Accuracy (m)</string>
+    <string name="history_dop">DOP</string>
+    <string name="history_satellites">Satellites</string>
+    <string name="history_signal">Signal (dB-Hz)</string>
+    <string name="history_horizontal">horizontal</string>
+    <string name="history_vertical">vertical</string>
+    <string name="history_used">used</string>
+    <string name="history_in_view">in view</string>
+    <string name="history_top4">top 4</string>
+    <string name="history_mean">mean</string>
+    <string name="history_satellite_title">%1$s · last 30 min</string>
+    <string name="history_cn0">C/N0 (dB-Hz)</string>
+    <string name="history_elevation">Elevation (°)</string>
+    <string name="history_window">%1$d min</string>
+    <string name="recorder_session_info">Files: %1$d · %2$s</string>
+    <string name="history_no_data">No history for this satellite yet</string>
+
+    <!-- Orbits -->
+    <string name="orbits_update">Update orbits</string>
+    <string name="orbits_status">Satellites: %1$d · data from %2$s</string>
+    <string name="orbits_none">No orbit data yet. Updating needs internet (CelesTrak).</string>
+    <string name="orbits_loading">Downloading orbits…</string>
+    <string name="orbits_error">Update failed: %1$s</string>
+    <string name="orbits_need_position">Needs a position fix to compute look angles.</string>
+    <string name="orbits_forecast">Satellites above 10° · next 12 h</string>
+    <string name="orbits_passes">Rises and sets · next 2 h</string>
+    <string name="orbits_no_passes">No rises or sets in the next 2 hours</string>
+    <string name="orbits_disclaimer">Simplified orbit model (J2 secular), about a fraction of a degree for fresh data. GLONASS and Galileo are identified by matching tracked satellites.</string>
+    <string name="sky_orbits">Orbits</string>
+
+    <!-- Waypoints -->
+    <string name="wp_add_current">Save current position</string>
+    <string name="wp_add_manual">Add coordinates</string>
+    <string name="wp_name">Name</string>
+    <string name="wp_position_hint">Position</string>
+    <string name="wp_position_help">Decimal degrees (42.6957, 23.3328), UTM (34T 696943 4724354), MGRS (34TFN9694324354), Plus Code (8GJ5M8WM+74) voice code (kobigolesokekeriza) or text code (DGHXVKCPEY)</string>
+    <string name="wp_invalid">Position not recognised. Use decimal degrees, UTM, MGRS, a full Plus Code, a voice code or a text code.</string>
+    <string name="wp_none">No waypoints yet</string>
+    <string name="wp_navigate">Navigate</string>
+    <string name="wp_stop">Stop navigation</string>
+    <string name="wp_open_map">Open in map app</string>
+    <string name="wp_share">Share</string>
+    <string name="wp_delete">Delete</string>
+    <string name="wp_default_name">Point %1$d</string>
+    <string name="wp_target">Navigating to %1$s</string>
+    <string name="wp_heading_compass">heading from compass</string>
+    <string name="wp_heading_course">heading from GPS course</string>
+    <string name="wp_heading_disturbed">compass disturbed: hold still or walk to use the GPS course</string>
+    <string name="wp_no_fix">Waiting for a position fix</string>
+
+    <!-- Voice code -->
+    <string name="tool_voice_code">Location codes</string>
+    <string name="tool_voice_code_desc">Compact text codes for messages, speakable voice codes, QR</string>
+    <string name="vc_source_me">My position</string>
+    <string name="vc_source_waypoint">Waypoint: %1$s</string>
+    <string name="vc_use_my_position">Use my position</string>
+    <string name="vc_global">Global</string>
+    <string name="vc_regional">Regional</string>
+    <string name="vc_local">Local</string>
+    <string name="vc_range_global">Syllables: %1$d · works anywhere in the world</string>
+    <string name="vc_range_short">Syllables: %1$d · receiver within ±%2$s N-S, ±%3$s E-W</string>
+    <string name="vc_copy">Copy</string>
+    <string name="vc_share">Share</string>
+    <string name="vc_qr">QR</string>
+    <string name="vc_qr_hint">Any camera app opens this as a map location; this app reads the code back.</string>
+    <string name="vc_share_text_global">My position (voice code): %1$s\nSay: %2$s\n%3$s</string>
+    <string name="vc_share_text_short">My position (short voice code, decode near me): %1$s\nSay: %2$s\n%3$s</string>
+    <string name="vc_decode_title">Decode a received code</string>
+    <string name="vc_decode_hint">Text code, voice code or coordinates</string>
+    <string name="vc_decode">Decode</string>
+    <string name="vc_any_format">Coordinates</string>
+    <string name="vc_tier_label">%1$s voice code ✓ check OK</string>
+    <string name="vc_from_me">%1$s from me · %2$s</string>
+    <string name="vc_not_recognised">Not recognised: use a text code, a voice code, decimal degrees, UTM, MGRS, a Plus Code or a geo: link.</string>
+    <string name="vc_err_checksum">✗ Check failed: at least one syllable is wrong. Ask for it again.</string>
+    <string name="vc_err_length">✗ Wrong length: voice codes have 5, 7 or 9 syllables.</string>
+    <string name="vc_err_reference">✗ This short code needs your own position. Wait for a fix, or ask for the global code.</string>
+    <string name="vc_err_range">✗ Not a valid position: probably a misheard syllable.</string>
+    <string name="vc_err_syllables">✗ Not made of voice-code syllables (b d f g h j k l m n p r s t v z + a e i o).</string>
+    <string name="vc_edge_warning">⚠ Near the edge of the %1$s code\'s range (about ±%2$s). If the sender may be further away than that, this is the wrong place: ask for the global code.</string>
+    <string name="vc_save_waypoint">Save as waypoint</string>
+    <string name="vc_waypoint_name">Received %1$s</string>
+    <string name="vc_about">Text codes use 0–9 and A–Z without I, L, O, U (5 bits per character); reading ignores case, spaces and dashes and treats O as 0 and I or L as 1. Voice codes use 64 syllables (16 consonants × a e i o). Global codes work anywhere; regional and local codes are shorter and are completed with the reader\'s own position. Every code has a built-in check that rejects any single wrong character or syllable. These are GPS Tools\' own formats.</string>
+    <string name="wp_share_voice">Share as location code</string>
+    <string name="vc_title">Voice code (for speaking)</string>
+    <string name="tc_title">Text code (for messages)</string>
+    <string name="tc_precision">Precision</string>
+    <string name="tc_standard">10 m</string>
+    <string name="tc_precise">3 m</string>
+    <string name="tc_range_global">Characters: %1$d · cell %2$s · works anywhere</string>
+    <string name="tc_range_short">Characters: %1$d · cell %2$s · reader within ±%3$s N-S, ±%4$s E-W</string>
+    <string name="tc_tier_label">%1$s text code (%2$s cell) ✓ check OK</string>
+    <string name="tc_err_checksum">✗ Check failed: at least one character is wrong. Ask for the code again.</string>
+    <string name="tc_err_length">✗ Wrong length: text codes have 6 to 11 characters.</string>
+    <string name="tc_err_characters">✗ Not a text code: use only 0–9 and A–Z (no U).</string>
+    <string name="label_text_code_standard">Text code (10 m)</string>
+    <string name="label_text_code_precise">Text code (3 m)</string>
+
+    <!-- Backtrack -->
+    <string name="tool_backtrack">Backtrack</string>
+    <string name="tool_backtrack_desc">Record your way out, then follow the same path back</string>
+    <string name="bt_state_idle">No trail yet</string>
+    <string name="bt_state_ready">Trail saved</string>
+    <string name="bt_state_recording">● Recording trail</string>
+    <string name="bt_state_returning">Returning along the trail</string>
+    <string name="bt_arrived">You are back at the start</string>
+    <string name="bt_empty">Start the trail where you want to come back to, then walk, drive or ride. It keeps recording with the screen off.</string>
+    <string name="bt_trail_stats">Breadcrumbs: %1$d\nLength: %2$s</string>
+    <string name="bt_guidance">To the start:  %1$s along the trail\nNext crumb:    %2$s · %3$s\nOff the trail: %4$s\nWalked back:   %5$d%%</string>
+    <string name="bt_start">Start trail</string>
+    <string name="bt_pause">Pause</string>
+    <string name="bt_continue">Continue trail</string>
+    <string name="bt_return">Go back</string>
+    <string name="bt_stop">Stop</string>
+    <string name="bt_clear">Clear trail</string>
+    <string name="bt_clear_title">Delete the recorded trail?</string>
+    <string name="bt_too_short">The trail needs at least two breadcrumbs: move a few metres first.</string>
+    <string name="bt_hint">Breadcrumbs are saved every 5 m or more of movement with a fix better than 25 m. Going back follows the trail in reverse, not a straight line, so it leads around the obstacles you passed.</string>
+    <string name="bt_channel">Backtrack</string>
+    <string name="bt_channel_alerts">Backtrack alerts</string>
+    <string name="bt_notification_recording">Recording trail</string>
+    <string name="bt_notification_returning">Going back along the trail</string>
+    <string name="bt_notification_trail">Breadcrumbs: %1$d · %2$s</string>
+    <string name="bt_notification_remaining">%1$s to the start · head %2$s</string>
+    <string name="bt_alert_arrived">You are back at the start of the trail.</string>
+    <string name="bt_alert_off_trail">You are %1$s off the trail. Follow the arrow to rejoin it.</string>
+
+    <!-- Feedback -->
+    <string name="toast_no_position">No position yet</string>
+    <string name="toast_copied">Coordinates copied</string>
+    <string name="toast_no_app">No app can handle this</string>
+    <string name="toast_aiding_cleared">Assistance data cleared, receiver restarted</string>
+    <string name="toast_aiding_failed">The device rejected the command</string>
+    <string name="toast_need_permission">Location permission is required</string>
+
+    <string name="dialog_clear_title">Clear assistance data?</string>
+    <string name="dialog_clear_message">Deletes the cached almanac, ephemeris, time and position so the next fix is a cold start. Useful to measure TTFF or to recover a stuck receiver.</string>
+    <string name="dialog_clear_confirm">Clear</string>
+
+    <string name="share_subject">My location</string>
+</resources>

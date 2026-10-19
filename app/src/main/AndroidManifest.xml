@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- The GPS provider only delivers raw GNSS data with precise location. COARSE must be
+         requested alongside FINE on Android 12+, otherwise the system dialog is skipped. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Needed for LocationManager.sendExtraCommand("delete_aiding_data"). Normal permission. -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- Session recorder: keeps GNSS running with the screen off. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Orbit prediction: downloads GNSS TLEs from CelesTrak. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Required on purpose: without a GNSS receiver the app has nothing to show. -->
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="true"
+        tools:ignore="UnnecessaryRequiredFeature" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GpsTools">
+
+        <!-- Config changes are handled in place so a rotation does not restart the GNSS
+             session (TTFF, NMEA history and the current fix would otherwise be lost). -->
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard|navigation"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Receive voice codes / coordinates shared as text (SMS, chat). -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <!-- Open geo: links, e.g. from a scanned voice-code QR. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="geo" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".record.RecorderService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <service
+            android:name=".nav.BacktrackService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <provider
+            android:name=".record.SessionFileProvider"
+            android:authorities="${applicationId}.sessions"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+    </application>
+</manifest>
