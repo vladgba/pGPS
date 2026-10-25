@@ -26,9 +26,9 @@ public final class ToolsPage implements Page {
     private final FrameLayout subBody;
     private final Page[] tools;
     private final int[] titles = {R.string.tool_recorder, R.string.tool_averaging, R.string.tool_history,
-            R.string.tool_orbits, R.string.tool_waypoints, R.string.tool_backtrack, R.string.tool_spoof, R.string.tool_voice_code, R.string.tool_nmea};
+            R.string.tool_orbits, R.string.tool_waypoints, R.string.tool_ranging, R.string.tool_backtrack, R.string.tool_spoof, R.string.tool_voice_code, R.string.tool_nmea};
     private final int[] descriptions = {R.string.tool_recorder_desc, R.string.tool_averaging_desc,
-            R.string.tool_history_desc, R.string.tool_orbits_desc, R.string.tool_waypoints_desc, R.string.tool_backtrack_desc, R.string.tool_spoof_desc, R.string.tool_voice_code_desc, R.string.tool_nmea_desc};
+            R.string.tool_history_desc, R.string.tool_orbits_desc, R.string.tool_waypoints_desc, R.string.tool_ranging_desc, R.string.tool_backtrack_desc, R.string.tool_spoof_desc, R.string.tool_voice_code_desc, R.string.tool_nmea_desc};
     private final TextView recorderSubtitle;
     private final VoiceCodePage voiceCodePage;
     private int current = -1;
@@ -44,6 +44,7 @@ public final class ToolsPage implements Page {
                 new HistoryPage(activity),
                 new OrbitsPage(activity),
                 new WaypointsPage(activity, this::shareWaypointAsVoiceCode),
+                new RangingPage(activity),
                 new BacktrackPage(activity),
                 new SpoofPage(activity),
                 voiceCodePage,

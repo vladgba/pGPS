@@ -69,6 +69,12 @@ block is empty on purpose).
   - **Waypoints**: save the current or averaged position or typed coordinates; navigate with an
     arrow (magnet-safe compass, GPS course fallback) and a pin on the 3D horizon. Share any
     waypoint as a voice code.
+  - **Range & triangulation**: acoustic time-of-flight estimates, two-point distance and
+    forward/back bearings, and intersections of two or more compass rays. Choose GPS,
+    saved waypoints or typed coordinates; copy a result, save it, or select it as a navigation
+    target. The local north-up map handles stations across the date line. Triangulation uses
+    a local tangent-plane approximation for nearby stations; its residual spread is a fit
+    indicator, not a statistical accuracy guarantee. Shallow crossings amplify bearing errors.
   - **Backtrack**: records a breadcrumb trail (≥ 5 m steps, fixes better than 25 m) with the
     screen off, then guides back along the same path in reverse: arrow to a breadcrumb ~15 m
     ahead, remaining distance along the trail, off-trail distance, trail map, and alerts when
@@ -96,3 +102,19 @@ Requirements: Android SDK with platform 36, and a full JDK 17+ that includes `jl
 `local.properties` (not committed) points to the SDK: `sdk.dir=C\:/path/to/sdk`.
 
 minSdk 24 (first API with `GnssStatus` and `OnNmeaMessageListener`), targetSdk 36.
+
+### Ranging calculation checks
+
+The standalone checks use only JDK 17 and the production math classes. Compile outside the
+source tree (PowerShell example):
+
+```powershell
+$checkDir = Join-Path $env:TEMP 'gps-geodesic-checks'
+New-Item -ItemType Directory -Path $checkDir -Force | Out-Null
+javac -d $checkDir app/src/main/java/com/vladgba/gpstools/nav/Geodesic.java app/src/main/java/com/vladgba/gpstools/nav/Waypoint.java tools/GeodesicChecks.java
+java -cp $checkDir GeodesicChecks
+```
+
+Checks cover acoustic input validation, direct projection, forward/parallel/diverging bearings,
+multi-ray geometry, date-line crossings and 100 reproducible local comparisons against spherical
+distance/bearing calculations. They do not simulate compass accuracy or GPS reception.

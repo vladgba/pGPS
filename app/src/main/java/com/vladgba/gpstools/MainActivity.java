@@ -140,10 +140,12 @@ public final class MainActivity extends Activity implements GnssMonitor.Listener
         monitor.addListener(this);
         startOrRequestPermission();
         refreshChrome();
+        pages[currentTab].update(monitor);
     }
 
     @Override
     protected void onStop() {
+        pages[currentTab].onHidden();
         monitor.removeListener(this);
         // The recorder service may keep GNSS running; the monitor stops when nobody holds it.
         monitor.release(this);

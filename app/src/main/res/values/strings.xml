@@ -349,6 +349,46 @@
     <string name="dialog_clear_message">Deletes the cached almanac, ephemeris, time and position so the next fix is a cold start. Useful to measure TTFF or to recover a stuck receiver.</string>
     <string name="dialog_clear_confirm">Clear</string>
 
+    <!-- Range & Triangulation -->
+    <string name="tool_ranging">Range &amp; triangulation</string>
+    <string name="tool_ranging_desc">Flash-to-bang acoustic ranging, point-to-point distance, bearing intersection</string>
+    <string name="rng_mode_flash">Flash-to-bang</string>
+    <string name="rng_mode_points">Two points</string>
+    <string name="rng_mode_triangulate">Triangulate</string>
+    <string name="rng_live_heading">Live compass: %1$s</string>
+    <string name="rng_live_heading_none">Live compass: —</string>
+    <string name="rng_use_compass">Lock compass</string>
+    <string name="rng_flash_start">● FLASH (Start)</string>
+    <string name="rng_flash_bang">■ BANG (Stop)</string>
+    <string name="rng_flash_reset">Reset</string>
+    <string name="rng_elapsed_hint">Time (s)</string>
+    <string name="rng_azimuth_hint">Azimuth (° true north)</string>
+    <string name="rng_temp_hint">Air temp (°C)</string>
+    <string name="rng_sound_info">Speed of sound: %1$.1f m/s at %2$.0f °C</string>
+    <string name="rng_flash_result_dist">Distance: %1$s  (%2$.2f s × %3$.1f m/s)</string>
+    <string name="rng_flash_projected">Projected target (from %1$s · %2$s):</string>
+    <string name="rng_flash_no_origin">Set time and azimuth above. Waiting for GPS fix (or pick an origin) to project target coordinates.</string>
+    <string name="rng_origin_me">My GPS position</string>
+    <string name="rng_pick_my_gps">My GPS</string>
+    <string name="rng_pick_waypoint">Waypoint…</string>
+    <string name="rng_pick_coords">Enter coords…</string>
+    <string name="rng_point_a">Point A (Origin)</string>
+    <string name="rng_point_b">Point B (Destination)</string>
+    <string name="rng_swap_points">⇅ Swap A &amp; B</string>
+    <string name="rng_two_points_result">Distance:        %1$s  (%2$.1f m)\nForward bearing: %3$s\nBack bearing:    %4$s\nΔ Altitude:      %5$s</string>
+    <string name="rng_tri_add_live">+ Sight live compass from GPS</string>
+    <string name="rng_tri_add_manual">+ Add manual ray</string>
+    <string name="rng_tri_clear">Clear rays</string>
+    <string name="rng_tri_need_rays">Add at least 2 bearing rays from different positions to triangulate a target.</string>
+    <string name="rng_tri_divergent">⚠ Rays do not intersect in front of the observers (parallel or diverging bearings).</string>
+    <string name="rng_tri_result">Intersected target (%1$d rays · crossing angle %2$.0f°%3$s):</string>
+    <string name="rng_tri_spread"> · spread ±%1$.0f m</string>
+    <string name="rng_tri_shallow_warn">⚠ Shallow crossing angle (&lt; 15°): small bearing errors cause large range uncertainty.</string>
+    <string name="rng_save_waypoint">Save as waypoint</string>
+    <string name="rng_default_flash_wp">Bang %1$s</string>
+    <string name="rng_default_tri_wp">Triangulated %1$s</string>
+    <string name="rng_hint">Flash-to-bang starts a high-precision timer when you see a muzzle flash or explosion and stops when the sound arrives, projecting the source along the sighted azimuth. Triangulation intersects 2 or more bearing lines cast from your GPS positions or saved waypoints.</string>
+
     <!-- Location spoofing -->
     <string name="tool_spoof">Spoof location</string>
     <string name="tool_spoof_desc">Fake the device position for other apps (mock location from Developer options)</string>
