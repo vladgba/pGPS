@@ -221,7 +221,12 @@ public final class MainActivity extends Activity implements GnssMonitor.Listener
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode != REQUEST_LOCATION) return;
+        if (requestCode != REQUEST_LOCATION) {
+            boolean granted = grantResults.length > 0;
+            for (int result : grantResults) granted &= result == PackageManager.PERMISSION_GRANTED;
+            for (Page page : pages) page.onPermissionResult(requestCode, granted);
+            return;
+        }
         permissionRequestInFlight = false;
         if (monitor.hasPermission()) {
             permissionPermanentlyDenied = false;

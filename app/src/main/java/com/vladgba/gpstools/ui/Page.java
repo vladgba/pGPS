@@ -25,6 +25,10 @@ public interface Page {
     default void goBack() {
     }
 
+    /** Result of a runtime permission request the page started (forwarded by the activity). */
+    default void onPermissionResult(int requestCode, boolean granted) {
+    }
+
     /** The page was removed from the screen. */
     default void onHidden() {
     }

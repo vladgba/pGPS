@@ -1,5 +1,7 @@
 package com.vladgba.gpstools.ui;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.text.SpannableStringBuilder;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vladgba.gpstools.R;
 import com.vladgba.gpstools.gnss.ConstellationCount;
@@ -22,8 +25,13 @@ import com.vladgba.gpstools.orbit.OrbitCatalog;
 import java.util.List;
 import java.util.Locale;
 
-/** Sky tab: the 2D polar plot with signal bars, or the first-person 3D sky view. */
+/**
+ * Sky tab: the 2D polar plot with signal bars, or the first-person 3D sky view, optionally as an
+ * AR overlay on the back camera.
+ */
 public final class SkyPage implements Page {
+
+    public static final int REQUEST_CAMERA = 5;
 
     private final Context context;
     private final LinearLayout root;
@@ -36,6 +44,8 @@ public final class SkyPage implements Page {
     private final TextView threeDChip;
     private final TextView compassChip;
     private final TextView orbitsChip;
+    private final TextView arChip;
+    private final ArCameraView camera;
     private final OrbitCatalog catalog;
     private final WaypointStore waypoints;
     private boolean threeD;
@@ -55,12 +65,14 @@ public final class SkyPage implements Page {
         threeDChip = chip(R.string.sky_mode_3d);
         compassChip = chip(R.string.sky_compass);
         orbitsChip = chip(R.string.sky_orbits);
+        arChip = chip(R.string.sky_ar);
         chips.addView(plotChip);
         chips.addView(threeDChip);
         View spacer = new View(context);
         chips.addView(spacer, new LinearLayout.LayoutParams(0, 1, 1f));
         chips.addView(orbitsChip);
         chips.addView(compassChip);
+        chips.addView(arChip);
         root.addView(chips);
 
         FrameLayout body = new FrameLayout(context);
@@ -86,7 +98,22 @@ public final class SkyPage implements Page {
         plotMode = plot;
         body.addView(plot);
 
-        // 3D mode
+        // 3D mode: the camera preview (AR only) sits under the transparent sky overlay.
+        camera = new ArCameraView(context);
+        camera.setVisibility(View.GONE);
+        camera.setListener(new ArCameraView.Listener() {
+            @Override
+            public void onFocalChanged(double focalPx) {
+                sky3d.setArFocalPx(focalPx);
+            }
+
+            @Override
+            public void onCameraError(String message) {
+                Toast.makeText(context, context.getString(R.string.sky_ar_camera_error, message), Toast.LENGTH_SHORT).show();
+                setAr(false);
+            }
+        });
+        body.addView(camera);
         sky3d = new Sky3DView(context);
         sky3d.setListener(follow -> compassChip.setSelected(follow));
         body.addView(sky3d);
@@ -103,7 +130,43 @@ public final class SkyPage implements Page {
             if (sky3d.isShowPredictions()) catalog.refreshIfStale();
         });
         orbitsChip.setSelected(sky3d.isShowPredictions());
+        arChip.setOnClickListener(v -> {
+            if (sky3d.isArMode()) setAr(false);
+            else requestAr();
+        });
         setThreeD(false);
+    }
+
+    private boolean arSupported() {
+        return camera.isAvailable() && sky3d.hasOrientationSensor();
+    }
+
+    private void requestAr() {
+        if (camera.hasPermission()) {
+            setAr(true);
+        } else if (context instanceof Activity) {
+            ((Activity) context).requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA);
+        }
+    }
+
+    @Override
+    public void onPermissionResult(int requestCode, boolean granted) {
+        if (requestCode != REQUEST_CAMERA) return;
+        if (granted) {
+            if (root.isAttachedToWindow() && root.isShown()) setAr(true);
+        } else Toast.makeText(context, R.string.sky_ar_no_permission, Toast.LENGTH_LONG).show();
+    }
+
+    private void setAr(boolean on) {
+        on = on && threeD && arSupported();
+        sky3d.setArMode(on);
+        arChip.setSelected(on);
+        camera.setVisibility(on ? View.VISIBLE : View.GONE);
+        camera.setActive(on);
+        if (on && !Double.isNaN(camera.getFocalPx())) sky3d.setArFocalPx(camera.getFocalPx());
+        // AR forces the compass on; the chip would only confuse.
+        compassChip.setVisibility(threeD && !on && sky3d.hasOrientationSensor() ? View.VISIBLE : View.GONE);
+        compassChip.setSelected(sky3d.isFollowSensor());
     }
 
     private void setThreeD(boolean value) {
@@ -114,9 +177,11 @@ public final class SkyPage implements Page {
         sky3d.setVisibility(value ? View.VISIBLE : View.GONE);
         compassChip.setVisibility(value && sky3d.hasOrientationSensor() ? View.VISIBLE : View.GONE);
         orbitsChip.setVisibility(value ? View.VISIBLE : View.GONE);
+        arChip.setVisibility(value && arSupported() ? View.VISIBLE : View.GONE);
         if (value && sky3d.isShowPredictions()) catalog.refreshIfStale();
         if (!value) {
-            // Leaving 3D also stops the orientation sensor.
+            // Leaving 3D also stops the camera and the orientation sensor.
+            setAr(false);
             sky3d.setFollowSensor(false);
             compassChip.setSelected(false);
         }

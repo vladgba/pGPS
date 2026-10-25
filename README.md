@@ -48,6 +48,10 @@ block is empty on purpose).
   **3D view**: horizon, ground, alt/az grid, compass points, the Sun, satellites with motion
   trails; drag/pinch to look around or "Compass" to point the phone at the sky (rotation
   vector sensor, corrected to true north); tap a satellite for its details.
+  In 3D mode, **AR** overlays the sky on the back-camera preview when a camera and orientation
+  sensor are available. Camera permission is requested when enabling AR. Drag sideways to align
+  north, pinch to calibrate the overlay scale, and double-tap to reset that scale. Camera lens
+  metadata provides the initial scale; visual alignment depends on the device's optics and sensors.
 - **Integrity**: heuristic **jamming** (AGC drop per band from raw measurements, C/N0
   collapse, signal loss) and **spoofing** detection (mock location, GNSS vs network position,
   impossible jumps, GNSS vs phone clock and time jumps, C/N0 uniformity, C/N0 vs elevation
@@ -86,7 +90,7 @@ block is empty on purpose).
   (cold start, to measure TTFF).
 
 Permissions: precise location, foreground service (location) and notifications for the
-recorder and backtrack, internet for orbit downloads.
+recorder and backtrack, internet for orbit downloads, and optional camera access for AR.
 
 ## Build
 
@@ -118,3 +122,5 @@ java -cp $checkDir GeodesicChecks
 Checks cover acoustic input validation, direct projection, forward/parallel/diverging bearings,
 multi-ray geometry, date-line crossings and 100 reproducible local comparisons against spherical
 distance/bearing calculations. They do not simulate compass accuracy or GPS reception.
+
+See [REVIEW_VALIDATION.md](REVIEW_VALIDATION.md) for the ranging/AR build and device review.

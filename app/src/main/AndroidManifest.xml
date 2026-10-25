@@ -19,6 +19,11 @@
     <uses-permission
         android:name="android.permission.ACCESS_MOCK_LOCATION"
         tools:ignore="MockLocation,ProtectedPermissions" />
+    <!-- AR sky: live back-camera preview under the 3D sky overlay. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <!-- Required on purpose: without a GNSS receiver the app has nothing to show. -->
     <uses-feature

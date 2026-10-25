@@ -2,6 +2,7 @@ package com.vladgba.gpstools.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.DashPathEffect;
 import android.graphics.LinearGradient;
@@ -46,6 +47,10 @@ import java.util.Set;
  * straight line, so the ground is an exact half-plane of the screen. World frame is ENU:
  * x = east, y = true north, z = up. The camera follows the phone ({@link OrientationTracker})
  * or is dragged and pinched by hand.
+ *
+ * <p>AR mode: the view is drawn transparent over a live camera preview ({@link ArCameraView}),
+ * always follows the phone and uses the camera's focal length instead of a free FOV. Pinch then
+ * fine-tunes the scale (lens data is not always exact) and a sideways drag aligns north.
  */
 public final class Sky3DView extends View implements OrientationTracker.Callback {
 
@@ -65,6 +70,12 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
     private static final long TRACK_HALF_SPAN_MS = 3 * 3600_000L;
     private static final long TRACK_STEP_MS = 5 * 60_000L;
     private static final long TRACK_REFRESH_MS = 60_000L;
+    /** Less lag in AR, where the overlay must stay on the camera image. */
+    private static final float AR_SENSOR_SMOOTHING = 0.6f;
+    private static final float MIN_AR_SCALE = 0.6f;
+    private static final float MAX_AR_SCALE = 1.6f;
+    private static final String PREFS = "sky3d";
+    private static final String PREF_AR_SCALE = "ar_scale";
 
     // ---- Camera ---------------------------------------------------------------------------
     private float yawDeg = 180f;   // looking south by default
@@ -74,6 +85,14 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
     private final double[] right = new double[3];
     private final double[] up = new double[3];
     private double focal;
+
+    // ---- AR -------------------------------------------------------------------------------
+    private boolean arMode;
+    private boolean followBeforeAr;
+    private double arFocalPx = Double.NaN;
+    private float arScale = 1f;
+    private final Paint arScrimPaint = new Paint();
+    private final Paint arGroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     // ---- Orientation ----------------------------------------------------------------------
     private final OrientationTracker tracker;
@@ -168,6 +187,14 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
         cardPaint.setColor(0xE6171B22);
         cardTextPaint.setTextSize(Ui.sp(context, 13));
         cardTextPaint.setColor(context.getColor(R.color.text_primary));
+        arScrimPaint.setColor(0x33000814);
+        arGroundPaint.setColor(0x55201A0E);
+        try {
+            float savedScale = prefs().getFloat(PREF_AR_SCALE, 1f);
+            if (Float.isFinite(savedScale)) arScale = clamp(savedScale, MIN_AR_SCALE, MAX_AR_SCALE);
+        } catch (RuntimeException ignored) {
+            // Use the default calibration if preferences are unavailable or malformed.
+        }
 
         gestures = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
@@ -179,6 +206,14 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float dx, float dy) {
                 float degPerPx = fovDeg / Math.max(1, Math.min(getWidth(), getHeight()));
                 interacted = true;
+                if (arMode) {
+                    // AR always follows the phone; a drag only aligns north with the image.
+                    if (tracker.isFused() && haveSensorFrame) {
+                        tracker.adjustNorth(-Math.toRadians(dx * degPerPx));
+                        invalidate();
+                    }
+                    return true;
+                }
                 if (followSensor && tracker.isFused() && haveSensorFrame) {
                     // In compass mode a sideways drag sets north by hand (bad compass).
                     tracker.adjustNorth(-Math.toRadians(dx * degPerPx));
@@ -200,7 +235,8 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
 
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                fovDeg = 90f;
+                if (arMode) setArScale(1f);
+                else fovDeg = 90f;
                 invalidate();
                 return true;
             }
@@ -208,6 +244,12 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
         scaleGestures = new ScaleGestureDetector(context, new ScaleGestureDetector.SimpleOnScaleGestureListener() {
             @Override
             public boolean onScale(ScaleGestureDetector detector) {
+                interacted = true;
+                if (arMode) {
+                    // Spreading the fingers enlarges the overlay: a longer focal length.
+                    setArScale(clamp(arScale * detector.getScaleFactor(), MIN_AR_SCALE, MAX_AR_SCALE));
+                    return true;
+                }
                 fovDeg = clamp(fovDeg / detector.getScaleFactor(), MIN_FOV, MAX_FOV);
                 interacted = true;
                 invalidate();
@@ -236,6 +278,7 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
 
     private void setFollowSensor(boolean follow, boolean fromUser) {
         if (follow && !tracker.isAvailable()) follow = false;
+        if (arMode && !follow) return; // AR is meaningless without the phone's attitude
         if (followSensor == follow) return;
         followSensor = follow;
         haveSensorFrame = false;
@@ -247,6 +290,47 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
         updateSensorRegistration();
         if (fromUser && listener != null) listener.onFollowSensorChanged(follow);
         invalidate();
+    }
+
+    public boolean isArMode() {
+        return arMode;
+    }
+
+    /**
+     * AR overlay on/off. Turning it on enables compass mode; turning it off restores the mode
+     * that was active before.
+     */
+    public void setArMode(boolean ar) {
+        if (arMode == ar || (ar && !tracker.isAvailable())) return;
+        if (ar) {
+            followBeforeAr = followSensor;
+            setFollowSensor(true);
+            arMode = true;
+        } else {
+            arMode = false;
+            setFollowSensor(followBeforeAr);
+        }
+        invalidate();
+    }
+
+    /** Focal length of the camera preview behind the view, in view pixels. */
+    public void setArFocalPx(double focalPx) {
+        arFocalPx = Double.isFinite(focalPx) && focalPx > 0 ? focalPx : Double.NaN;
+        invalidate();
+    }
+
+    private void setArScale(float scale) {
+        arScale = scale;
+        try {
+            prefs().edit().putFloat(PREF_AR_SCALE, scale).apply();
+        } catch (RuntimeException ignored) {
+            // Preferences unavailable: keep the value for this session only.
+        }
+        invalidate();
+    }
+
+    private SharedPreferences prefs() {
+        return getContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
     }
 
     /** Observer position for the Sun, orbits, declination and expected magnetic field. */
@@ -346,9 +430,10 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
             System.arraycopy(r, 0, right, 0, 3);
             haveSensorFrame = true;
         } else {
+            float k = arMode ? AR_SENSOR_SMOOTHING : SENSOR_SMOOTHING;
             for (int i = 0; i < 3; i++) {
-                fwd[i] += (f[i] - fwd[i]) * SENSOR_SMOOTHING;
-                right[i] += (r[i] - right[i]) * SENSOR_SMOOTHING;
+                fwd[i] += (f[i] - fwd[i]) * k;
+                right[i] += (r[i] - right[i]) * k;
             }
         }
         orthonormalize();
@@ -388,7 +473,17 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
             right[2] = 0;
         }
         orthonormalize();
-        focal = (Math.min(getWidth(), getHeight()) / 2.0) / Math.tan(Math.toRadians(fovDeg) / 2.0);
+        if (arMode && !Double.isNaN(arFocalPx) && arFocalPx > 0) {
+            focal = arFocalPx * arScale;
+        } else {
+            focal = (Math.min(getWidth(), getHeight()) / 2.0) / Math.tan(Math.toRadians(fovDeg) / 2.0);
+        }
+    }
+
+    /** Field of view across the shorter screen side, from the focal length actually used. */
+    private float effectiveFovDeg() {
+        if (focal <= 0) return fovDeg;
+        return (float) Math.toDegrees(2 * Math.atan(Math.min(getWidth(), getHeight()) / 2.0 / focal));
     }
 
     private void orthonormalize() {
@@ -435,8 +530,13 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
         if (w == 0 || h == 0) return;
         updateCamera();
 
-        canvas.drawRect(0, 0, w, h, skyPaint);
-        drawHorizonGlow(canvas);
+        if (arMode) {
+            // The camera image is the sky: only a light scrim keeps the labels readable.
+            canvas.drawRect(0, 0, w, h, arScrimPaint);
+        } else {
+            canvas.drawRect(0, 0, w, h, skyPaint);
+            drawHorizonGlow(canvas);
+        }
         drawGrid(canvas);
         drawSun(canvas);
         drawPredictions(canvas, true);
@@ -493,7 +593,7 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
             path.moveTo(polygon.get(0)[0], polygon.get(0)[1]);
             for (int i = 1; i < polygon.size(); i++) path.lineTo(polygon.get(i)[0], polygon.get(i)[1]);
             path.close();
-            canvas.drawPath(path, groundPaint);
+            canvas.drawPath(path, arMode ? arGroundPaint : groundPaint);
         }
         if (horizon.size() == 2) {
             canvas.drawLine(horizon.get(0)[0], horizon.get(0)[1], horizon.get(1)[0], horizon.get(1)[1], horizonPaint);
@@ -576,7 +676,7 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
             path.lineTo(point[0] - size, point[1]);
             path.close();
             canvas.drawPath(path, markerPaint);
-            if (fovDeg <= 100) {
+            if (effectiveFovDeg() <= 100) {
                 smallLabelPaint.setColor(color);
                 smallLabelPaint.setAlpha(aboveHorizon ? 170 : 80);
                 canvas.drawText(predictedLabel(p.satellite), point[0] + size + 3 * dp, point[1] + 3 * dp, smallLabelPaint);
@@ -690,13 +790,22 @@ public final class Sky3DView extends View implements OrientationTracker.Callback
     private void drawHud(Canvas canvas) {
         float x = 12 * dp;
         float y = getHeight() - 12 * dp;
+        String mode = arMode ? (Double.isNaN(arFocalPx) ? "  · AR (waiting for camera)"
+                : String.format(Locale.ROOT, "  · AR ×%.2f", arScale))
+                : followSensor ? "  · compass" : "";
         String view = String.format(Locale.ROOT, "Az %03.0f°  Alt %+.0f°  FOV %.0f°%s",
-                lookAzimuth(), lookAltitude(), fovDeg, followSensor ? "  · compass" : "");
+                lookAzimuth(), lookAltitude(), effectiveFovDeg(), mode);
         canvas.drawText(view, x, y, hudPaint);
+        float hintOffset = 0;
+        if (arMode && !interacted) {
+            hintOffset = hudPaint.getFontSpacing();
+            canvas.drawText("Drag: align north · pinch: match camera scale",
+                    x, y - hintOffset, hudPaint);
+        }
         if (!interacted && !followSensor) {
             canvas.drawText("Drag to look around · pinch to zoom · tap a satellite", x, y - 16 * dp, hudPaint);
         }
-        if (followSensor && tracker.isFused()) drawCompassStatus(canvas, x, y - 18 * dp);
+        if (followSensor && tracker.isFused()) drawCompassStatus(canvas, x, y - 18 * dp - hintOffset);
     }
 
     /** Explains why the heading is or is not corrected by the magnetometer. */

@@ -389,6 +389,11 @@
     <string name="rng_default_tri_wp">Triangulated %1$s</string>
     <string name="rng_hint">Flash-to-bang starts a high-precision timer when you see a muzzle flash or explosion and stops when the sound arrives, projecting the source along the sighted azimuth. Triangulation intersects 2 or more bearing lines cast from your GPS positions or saved waypoints.</string>
 
+    <!-- AR sky -->
+    <string name="sky_ar">AR</string>
+    <string name="sky_ar_no_permission">Camera permission is needed for the AR view</string>
+    <string name="sky_ar_camera_error">AR camera: %1$s</string>
+
     <!-- Location spoofing -->
     <string name="tool_spoof">Spoof location</string>
     <string name="tool_spoof_desc">Fake the device position for other apps (mock location from Developer options)</string>

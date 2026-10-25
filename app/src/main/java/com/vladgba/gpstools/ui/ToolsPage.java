@@ -195,6 +195,11 @@ public final class ToolsPage implements Page {
     }
 
     @Override
+    public void onPermissionResult(int requestCode, boolean granted) {
+        for (Page tool : tools) tool.onPermissionResult(requestCode, granted);
+    }
+
+    @Override
     public void onHidden() {
         if (current >= 0) tools[current].onHidden();
     }
