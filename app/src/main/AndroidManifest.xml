@@ -14,6 +14,11 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <!-- Orbit prediction: downloads GNSS TLEs from CelesTrak. -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Location spoofing: lets the app be chosen in Developer options → "Select mock location
+         app". It is granted only through that setting, so it is kept in release builds. -->
+    <uses-permission
+        android:name="android.permission.ACCESS_MOCK_LOCATION"
+        tools:ignore="MockLocation,ProtectedPermissions" />
 
     <!-- Required on purpose: without a GNSS receiver the app has nothing to show. -->
     <uses-feature
@@ -61,6 +66,11 @@
 
         <service
             android:name=".nav.BacktrackService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <service
+            android:name=".spoof.SpoofService"
             android:exported="false"
             android:foregroundServiceType="location" />
 

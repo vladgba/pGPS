@@ -349,5 +349,44 @@
     <string name="dialog_clear_message">Deletes the cached almanac, ephemeris, time and position so the next fix is a cold start. Useful to measure TTFF or to recover a stuck receiver.</string>
     <string name="dialog_clear_confirm">Clear</string>
 
+    <!-- Location spoofing -->
+    <string name="tool_spoof">Spoof location</string>
+    <string name="tool_spoof_desc">Fake the device position for other apps (mock location from Developer options)</string>
+    <string name="spoof_state_on">Spoofing active</string>
+    <string name="spoof_state_off">Not spoofing</string>
+    <string name="spoof_setup_ok">✓ Selected as the mock location app</string>
+    <string name="spoof_setup_select">⚠ Open Developer options → "Select mock location app" and choose GPS Tools</string>
+    <string name="spoof_setup_enable_dev">⚠ Developer options are off: in About phone tap "Build number" 7 times, then select GPS Tools as the mock location app</string>
+    <string name="spoof_open_dev">Open developer options</string>
+    <string name="spoof_toast_select">Find "Select mock location app" and choose GPS Tools</string>
+    <string name="spoof_toast_enable_dev">Tap "Build number" 7 times to enable Developer options</string>
+    <string name="spoof_setup_title">Mock location app not set</string>
+    <string name="spoof_setup_message">Android only accepts fake positions from the app chosen in Developer options → "Select mock location app". Choose GPS Tools there, then come back and press Start.</string>
+    <string name="spoof_coords">Position (any format: decimal, DMS, UTM, MGRS, Plus Code, voice code, geo:)</string>
+    <string name="spoof_coords_hint">42.6977, 23.3219</string>
+    <string name="spoof_use_current">Current position</string>
+    <string name="spoof_use_waypoint">From waypoint…</string>
+    <string name="spoof_no_waypoints">No saved waypoints</string>
+    <string name="spoof_altitude">Altitude (m)</string>
+    <string name="spoof_accuracy">Accuracy (m)</string>
+    <string name="spoof_speed">Speed (km/h)</string>
+    <string name="spoof_bearing">Heading (°)</string>
+    <string name="spoof_jitter">Natural jitter (wander within the accuracy)</string>
+    <string name="spoof_providers">Providers to replace</string>
+    <string name="spoof_provider_gps">GPS</string>
+    <string name="spoof_provider_network">Network (Wi-Fi / cell)</string>
+    <string name="spoof_provider_fused">Fused</string>
+    <string name="spoof_start">Start</string>
+    <string name="spoof_apply">Apply changes</string>
+    <string name="spoof_stop">Stop</string>
+    <string name="spoof_current">Now: %1$s · %2$s</string>
+    <string name="spoof_bad_coords">Coordinates not recognised</string>
+    <string name="spoof_err_not_selected">This app is not selected as the mock location app</string>
+    <string name="spoof_err_providers">Could not replace: %1$s</string>
+    <string name="spoof_err_no_provider">Select at least one provider</string>
+    <string name="spoof_channel">Location spoofing</string>
+    <string name="spoof_notification_title">Spoofing location</string>
+    <string name="spoof_hint">Pushes the position once per second to the chosen providers, also with the screen off, until stopped. A speed above 0 moves it along the heading. Satellites (GnssStatus, raw measurements) stay real, so the Integrity tab flags the mismatch and the mock flag, and apps that check Location.isMock() can tell. Stopping restores the real providers.</string>
+
     <string name="share_subject">My location</string>
 </resources>
