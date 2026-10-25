@@ -139,6 +139,9 @@ public final class RangingMapView extends View {
         if (!Double.isNaN(p1Lat)) {
             refLat = p1Lat;
             refLon = p1Lon;
+        } else if (!Double.isNaN(p2Lat)) {
+            refLat = p2Lat;
+            refLon = p2Lon;
         } else if (rays != null && !rays.isEmpty()) {
             refLat = rays.get(0).latitude;
             refLon = rays.get(0).longitude;
@@ -217,13 +220,17 @@ public final class RangingMapView extends View {
                 float sx2 = ox + (float) ((Geodesic.wrapLongitude(p2Lon - refLon) * kx - cx) * scale);
                 float sy2 = oy - (float) (((p2Lat - refLat) * ky - cy) * scale);
                 canvas.drawLine(sx1, sy1, sx2, sy2, linePaint);
-                drawMarker(canvas, sx2, sy2, stationPaint, p2Label);
             } else if (!Double.isNaN(targetLat)) {
                 float sxt = ox + (float) ((Geodesic.wrapLongitude(targetLon - refLon) * kx - cx) * scale);
                 float syt = oy - (float) (((targetLat - refLat) * ky - cy) * scale);
                 canvas.drawLine(sx1, sy1, sxt, syt, rayPaint);
             }
             drawMarker(canvas, sx1, sy1, mePaint, p1Label);
+        }
+        if (!Double.isNaN(p2Lat)) {
+            float sx2 = ox + (float) ((Geodesic.wrapLongitude(p2Lon - refLon) * kx - cx) * scale);
+            float sy2 = oy - (float) (((p2Lat - refLat) * ky - cy) * scale);
+            drawMarker(canvas, sx2, sy2, stationPaint, p2Label);
         }
 
         // Bearing rays
