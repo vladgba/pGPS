@@ -433,4 +433,5 @@
     <string name="spoof_hint">Pushes the position once per second to the chosen providers, also with the screen off, until stopped. A speed above 0 moves it along the heading. Satellites (GnssStatus, raw measurements) stay real, so the Integrity tab flags the mismatch and the mock flag, and apps that check Location.isMock() can tell. Stopping restores the real providers.</string>
 
     <string name="share_subject">My location</string>
+    <string name="menu_about">About pGPS</string>
 </resources>

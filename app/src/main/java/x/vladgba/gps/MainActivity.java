@@ -354,6 +354,10 @@ public final class MainActivity extends Activity implements GnssMonitor.Listener
             confirmClearAidingData();
             return true;
         }
+        if (id == R.id.action_about) {
+            x.vladgba.gps.ui.AboutDialog.show(this);
+            return true;
+        }
         Location loc = monitor.getLocation();
         if (loc == null) {
             toast(R.string.toast_no_position);

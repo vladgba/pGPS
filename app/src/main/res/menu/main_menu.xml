@@ -8,4 +8,5 @@
         android:checkable="true"
         android:title="@string/menu_keep_screen_on" />
     <item android:id="@+id/action_clear_aiding" android:title="@string/menu_clear_aiding" />
+    <item android:id="@+id/action_about" android:title="@string/menu_about" />
 </menu>
