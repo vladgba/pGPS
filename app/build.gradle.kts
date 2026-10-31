@@ -2,8 +2,8 @@ plugins {
     id("com.android.application")
 }
 
-// Release signing is not configured here: it is injected per machine by a Gradle init script
-// (~/.gradle/init.d) from RELEASE_* properties. Without it, release builds are unsigned.
+// Shared versioning (version.properties) + release signing, see gradle/android-common.gradle
+apply(from = rootProject.file("gradle/android-common.gradle"))
 
 android {
     namespace = "x.vladgba.gps"
@@ -14,8 +14,6 @@ android {
         // API 24 is where GnssStatus and OnNmeaMessageListener appear.
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0"
     }
 
     buildTypes {
