@@ -115,7 +115,7 @@ source tree (PowerShell example):
 ```powershell
 $checkDir = Join-Path $env:TEMP 'gps-geodesic-checks'
 New-Item -ItemType Directory -Path $checkDir -Force | Out-Null
-javac -d $checkDir app/src/main/java/com/vladgba/gpstools/nav/Geodesic.java app/src/main/java/com/vladgba/gpstools/nav/Waypoint.java tools/GeodesicChecks.java
+javac -d $checkDir app/src/main/java/x/vladgba/gps/nav/Geodesic.java app/src/main/java/x/vladgba/gps/nav/Waypoint.java tools/GeodesicChecks.java
 java -cp $checkDir GeodesicChecks
 ```
 

@@ -1,5 +1,5 @@
-import com.vladgba.gpstools.nav.Geodesic;
-import com.vladgba.gpstools.nav.Waypoint;
+import x.vladgba.gps.nav.Geodesic;
+import x.vladgba.gps.nav.Waypoint;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -6,11 +6,11 @@ plugins {
 // (~/.gradle/init.d) from RELEASE_* properties. Without it, release builds are unsigned.
 
 android {
-    namespace = "com.vladgba.gpstools"
+    namespace = "x.vladgba.gps"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.vladgba.gpstools"
+        applicationId = "x.vladgba.gps"
         // API 24 is where GnssStatus and OnNmeaMessageListener appear.
         minSdk = 24
         targetSdk = 36

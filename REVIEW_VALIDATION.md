@@ -37,7 +37,7 @@ Visual calibration remains necessary for device-specific lens metadata and compa
 
 ## Device smoke checks
 
-Built with a temporary application ID, `com.vladgba.gpstools.review`, and installed alongside
+Built with a temporary application ID, `x.vladgba.gps.review`, and installed alongside
 the existing application on PLU110. The temporary package had its own data and permissions.
 
 Passed:
