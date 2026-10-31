@@ -37,7 +37,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GpsTools">
+        android:theme="@style/Theme.PGps">
 
         <!-- Config changes are handled in place so a rotation does not restart the GNSS
              session (TTFF, NMEA history and the current fix would otherwise be lost). -->

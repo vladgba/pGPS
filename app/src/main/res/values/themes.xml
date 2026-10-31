@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Framework Material theme only: no AppCompat / Material Components dependency. -->
-    <style name="Theme.GpsTools" parent="Theme.P">
+    <style name="Theme.PGps" parent="Theme.P">
         <!-- Window paints the bar color; the content area paints @color/bg itself. -->
         <item name="android:windowBackground">@color/surface</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
