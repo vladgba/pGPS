@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Tab background: accent underline when selected. -->
+<!-- Tab background: pUI accent-soft pill when selected (same as the other p* apps). -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true">
         <layer-list>
-            <item>
-                <color android:color="@color/surface" />
-            </item>
-            <item android:gravity="bottom" android:height="3dp">
-                <color android:color="@color/accent" />
+            <item><color android:color="@color/surface" /></item>
+            <item android:top="8dp" android:bottom="8dp" android:left="3dp" android:right="3dp">
+                <shape>
+                    <solid android:color="@color/accent_soft" />
+                    <corners android:radius="@dimen/p_radius_pill" />
+                </shape>
             </item>
         </layer-list>
     </item>
-    <item>
-        <color android:color="@color/surface" />
-    </item>
+    <item><color android:color="@color/surface" /></item>
 </selector>

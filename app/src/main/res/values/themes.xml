@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Framework Material theme only: no AppCompat / Material Components dependency. -->
-    <style name="Theme.GpsTools" parent="android:Theme.Material.NoActionBar">
-        <item name="android:colorPrimary">@color/surface</item>
-        <item name="android:colorPrimaryDark">@color/surface</item>
-        <item name="android:colorAccent">@color/accent</item>
+    <style name="Theme.GpsTools" parent="Theme.P">
         <!-- Window paints the bar color; the content area paints @color/bg itself. -->
         <item name="android:windowBackground">@color/surface</item>
-        <item name="android:textColorPrimary">@color/text_primary</item>
-        <item name="android:textColorSecondary">@color/text_secondary</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
