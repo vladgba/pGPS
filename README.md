@@ -1,4 +1,4 @@
-# GPS Tools
+# pGPS
 
 Android app that shows what the device's GNSS receiver sees. Plain Java on the Android
 framework only: no AndroidX, no Kotlin stdlib, no third-party libraries (the `dependencies`

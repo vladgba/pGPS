@@ -176,7 +176,7 @@ public final class OrbitCatalog {
                 HttpURLConnection c = (HttpURLConnection) new URL(SOURCE_URL).openConnection();
                 c.setConnectTimeout(15_000);
                 c.setReadTimeout(20_000);
-                c.setRequestProperty("User-Agent", "GPS Tools Android");
+                c.setRequestProperty("User-Agent", "pGPS Android");
                 int code = c.getResponseCode();
                 if (code != HttpURLConnection.HTTP_OK) throw new IOException("HTTP " + code);
                 String text = read(c.getInputStream());

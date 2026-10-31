@@ -45,7 +45,7 @@ public final class ScatterPlotView extends View {
         drmsPaint.setStrokeWidth(2 * dp);
         textPaint.setTextSize(Ui.sp(context, 11));
         textPaint.setColor(context.getColor(R.color.text_secondary));
-        meanPaint.setColor(0xFFFFFFFF);
+        meanPaint.setColor(getContext().getColor(R.color.text_primary));
         meanPaint.setStrokeWidth(2 * dp);
     }
 

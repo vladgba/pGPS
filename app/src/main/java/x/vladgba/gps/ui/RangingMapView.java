@@ -53,7 +53,7 @@ public final class RangingMapView extends View {
 
         gridPaint.setStyle(Paint.Style.STROKE);
         gridPaint.setStrokeWidth(dp);
-        gridPaint.setColor(0x22FFFFFF);
+        gridPaint.setColor(getContext().getColor(R.color.divider));
 
         rayPaint.setStyle(Paint.Style.STROKE);
         rayPaint.setStrokeWidth(2f * dp);

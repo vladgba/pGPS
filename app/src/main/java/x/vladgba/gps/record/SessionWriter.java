@@ -64,7 +64,7 @@ final class SessionWriter implements GnssMonitor.Listener {
             if (formats.contains(RecordingFormat.GPX)) {
                 gpx = open("track.gpx");
                 gpx.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-                        + "<gpx version=\"1.1\" creator=\"GPS Tools\" xmlns=\"http://www.topografix.com/GPX/1/1\">\n"
+                        + "<gpx version=\"1.1\" creator=\"pGPS\" xmlns=\"http://www.topografix.com/GPX/1/1\">\n"
                         + "<trk><name>" + dir.getName() + "</name><trkseg>\n");
             }
             if (formats.contains(RecordingFormat.KML)) {

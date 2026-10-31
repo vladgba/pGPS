@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GPS Tools</string>
 
     <!-- Tabs -->
     <string name="tab_status">Status</string>
@@ -292,7 +291,7 @@
     <string name="vc_edge_warning">⚠ Near the edge of the %1$s code\'s range (about ±%2$s). If the sender may be further away than that, this is the wrong place: ask for the global code.</string>
     <string name="vc_save_waypoint">Save as waypoint</string>
     <string name="vc_waypoint_name">Received %1$s</string>
-    <string name="vc_about">Text codes use 0–9 and A–Z without I, L, O, U (5 bits per character); reading ignores case, spaces and dashes and treats O as 0 and I or L as 1. Voice codes use 64 syllables (16 consonants × a e i o). Global codes work anywhere; regional and local codes are shorter and are completed with the reader\'s own position. Every code has a built-in check that rejects any single wrong character or syllable. These are GPS Tools\' own formats.</string>
+    <string name="vc_about">Text codes use 0–9 and A–Z without I, L, O, U (5 bits per character); reading ignores case, spaces and dashes and treats O as 0 and I or L as 1. Voice codes use 64 syllables (16 consonants × a e i o). Global codes work anywhere; regional and local codes are shorter and are completed with the reader\'s own position. Every code has a built-in check that rejects any single wrong character or syllable. These are pGPS\' own formats.</string>
     <string name="wp_share_voice">Share as location code</string>
     <string name="vc_title">Voice code (for speaking)</string>
     <string name="tc_title">Text code (for messages)</string>
@@ -400,13 +399,13 @@
     <string name="spoof_state_on">Spoofing active</string>
     <string name="spoof_state_off">Not spoofing</string>
     <string name="spoof_setup_ok">✓ Selected as the mock location app</string>
-    <string name="spoof_setup_select">⚠ Open Developer options → "Select mock location app" and choose GPS Tools</string>
-    <string name="spoof_setup_enable_dev">⚠ Developer options are off: in About phone tap "Build number" 7 times, then select GPS Tools as the mock location app</string>
+    <string name="spoof_setup_select">⚠ Open Developer options → "Select mock location app" and choose pGPS</string>
+    <string name="spoof_setup_enable_dev">⚠ Developer options are off: in About phone tap "Build number" 7 times, then select pGPS as the mock location app</string>
     <string name="spoof_open_dev">Open developer options</string>
-    <string name="spoof_toast_select">Find "Select mock location app" and choose GPS Tools</string>
+    <string name="spoof_toast_select">Find "Select mock location app" and choose pGPS</string>
     <string name="spoof_toast_enable_dev">Tap "Build number" 7 times to enable Developer options</string>
     <string name="spoof_setup_title">Mock location app not set</string>
-    <string name="spoof_setup_message">Android only accepts fake positions from the app chosen in Developer options → "Select mock location app". Choose GPS Tools there, then come back and press Start.</string>
+    <string name="spoof_setup_message">Android only accepts fake positions from the app chosen in Developer options → "Select mock location app". Choose pGPS there, then come back and press Start.</string>
     <string name="spoof_coords">Position (any format: decimal, DMS, UTM, MGRS, Plus Code, voice code, geo:)</string>
     <string name="spoof_coords_hint">42.6977, 23.3219</string>
     <string name="spoof_use_current">Current position</string>

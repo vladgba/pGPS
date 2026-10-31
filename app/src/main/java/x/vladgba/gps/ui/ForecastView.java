@@ -104,8 +104,8 @@ public final class ForecastView extends View {
 
         float lx = left;
         float ly = -legendPaint.ascent();
-        drawSeries(canvas, totals, 0xFFFFFFFF, left, right, top, bottom, max);
-        legendPaint.setColor(0xFFFFFFFF);
+        drawSeries(canvas, totals, getContext().getColor(R.color.text_primary), left, right, top, bottom, max);
+        legendPaint.setColor(getContext().getColor(R.color.text_primary));
         String totalLabel = "━ all";
         canvas.drawText(totalLabel, lx, ly, legendPaint);
         lx += legendPaint.measureText(totalLabel) + 10 * dp;
