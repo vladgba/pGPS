@@ -1,0 +1,70 @@
+{
+  "reviewed_on": "2026-11-16",
+  "relocated_on": "2026-11-17",
+  "apps": [
+    {
+      "slug": "pGPS",
+      "name": "pGPS",
+      "project": ".",
+      "module": "app",
+      "package": "x.vladgba.gps",
+      "min_sdk": "24",
+      "target_sdk": "36",
+      "version_name": "1.0.0",
+      "version_code": null,
+      "version_source": "version.properties",
+      "commit": "6aea77da0f0f63e8cc9627fae8d7f19938046452",
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_LOCATION_EXTRA_COMMANDS",
+        "android.permission.ACCESS_MOCK_LOCATION",
+        "android.permission.CAMERA",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_LOCATION",
+        "android.permission.INTERNET",
+        "android.permission.POST_NOTIFICATIONS"
+      ],
+      "permission_scope": "main source manifest only",
+      "removed_permissions": [],
+      "allow_backup": "true",
+      "source_evidence": {
+        "network": [
+          "app/src/main/java/x/vladgba/gps/MainActivity.java",
+          "app/src/main/java/x/vladgba/gps/orbit/OrbitCatalog.java",
+          "app/src/main/java/x/vladgba/gps/ui/AboutDialog.java",
+          "app/src/main/java/x/vladgba/gps/ui/WaypointsPage.java"
+        ],
+        "storage": [
+          "app/src/main/java/x/vladgba/gps/MainActivity.java",
+          "app/src/main/java/x/vladgba/gps/nav/WaypointStore.java",
+          "app/src/main/java/x/vladgba/gps/orbit/OrbitCatalog.java",
+          "app/src/main/java/x/vladgba/gps/record/RinexWriter.java",
+          "app/src/main/java/x/vladgba/gps/record/SessionStore.java",
+          "app/src/main/java/x/vladgba/gps/record/SessionWriter.java",
+          "app/src/main/java/x/vladgba/gps/ui/Sky3DView.java",
+          "app/src/main/java/x/vladgba/gps/ui/SpoofPage.java",
+          "app/src/main/java/x/vladgba/gps/ui/VoiceCodePage.java"
+        ],
+        "sharing": [
+          "app/src/main/java/x/vladgba/gps/MainActivity.java",
+          "app/src/main/java/x/vladgba/gps/ui/RecorderPage.java",
+          "app/src/main/java/x/vladgba/gps/ui/VoiceCodePage.java",
+          "app/src/main/java/x/vladgba/gps/ui/WaypointsPage.java"
+        ],
+        "learning_clipboard": [],
+        "speech_translation": []
+      },
+      "review_items": [
+        "Owner must confirm developer identity/contact, production support and privacy URLs, countries, pricing, ads, target age and content rating.",
+        "Audit runtime traffic, dependencies and final merged release manifest before signing off Data safety. Source manifest alone is not a complete data audit.",
+        "Create a signed release AAB, test the release on a device and complete the Play Console testing/review requirements applicable to this account. No release binary was built by this documentation task."
+      ],
+      "publication_files": {
+        "store": "store",
+        "site": "docs/site/index.md",
+        "privacy": "docs/privacy-policy-draft.md"
+      }
+    }
+  ]
+}

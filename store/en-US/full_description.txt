@@ -1,0 +1,5 @@
+Inspect satellite signals and position data, record sessions and manage waypoints.
+
+Explore GNSS satellites, record tracks and navigate to waypoints.
+
+Requires Android API 24 or later.
