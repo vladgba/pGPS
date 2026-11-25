@@ -42,3 +42,7 @@ Requires Android 7.0+ (API 24). Built in plain Java on the Android framework, wi
 ```
 
 The APK is written to `app/build/outputs/apk/release/`.
+
+## License
+
+See [LICENSE](LICENSE).
